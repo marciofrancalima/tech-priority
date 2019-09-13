@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min';
+
+import { addLogRequest } from '../../../store/modules/log/actions';
 
 const modalStyle = {
   width: '75%',
@@ -11,6 +14,8 @@ export default function AddLogModal() {
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
 
+  const dispatch = useDispatch();
+
   function handleClearInputs() {
     setMessage('');
     setTech('');
@@ -21,7 +26,9 @@ export default function AddLogModal() {
     if (message === '' || tech === '') {
       M.toast({ html: 'Preencha os dados corretamente' });
     } else {
-      console.log(message, tech, attention);
+      dispatch(addLogRequest(message, attention, tech));
+
+      M.toast({ html: `Ocorrência adicionada por ${tech}` });
 
       handleClearInputs();
     }

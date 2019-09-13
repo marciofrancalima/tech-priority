@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import TechItem from '../TechItem';
 
+import api from '../../../services/api';
+
 export default function TechListModal() {
   const [techs, setTechs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -9,10 +11,9 @@ export default function TechListModal() {
   async function getTechs() {
     setLoading(true);
 
-    const response = await fetch('/techs');
-    const data = await response.json();
+    const response = await api.get('/techs');
 
-    setTechs(data);
+    setTechs(response.data);
     setLoading(false);
   }
 

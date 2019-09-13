@@ -25,7 +25,7 @@ export default function LogItem({ log }) {
         <br />
 
         <span className="grey-text">
-          <span className="black-text">ID {log.id}</span> last updated by{' '}
+          <span className="black-text">ID #{log.id}</span> last updated by{' '}
           <span className="black-text">{log.tech}</span> on {dateFormatted}
         </span>
 
