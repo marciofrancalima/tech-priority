@@ -7,14 +7,13 @@ import {
   DELETE_LOG_REQUEST,
   SET_CURRENT_REQUEST,
   SEARCH_LOGS_REQUEST,
-} from '../types';
+} from './types';
 import {
   getLogsRequest,
   getLogsSuccess,
   addLogSuccess,
   updateLogSuccess,
   setCurrentSuccess,
-  setClearCurrent,
   setSearchLogSuccess,
   deleteLogSuccess,
 } from './actions';
@@ -41,15 +40,6 @@ export function* addLog({ payload }) {
   yield put(getLogsRequest());
 }
 
-export function* deleteLog({ payload }) {
-  const { id } = payload;
-
-  yield call(api.delete, `logs/${id}`);
-
-  yield put(deleteLogSuccess());
-  yield put(getLogsRequest());
-}
-
 export function* updateLog({ payload }) {
   const { message, attention, tech } = payload;
 
@@ -63,7 +53,13 @@ export function* updateLog({ payload }) {
   });
 
   yield put(updateLogSuccess());
-  yield put(setClearCurrent());
+  yield put(getLogsRequest());
+}
+
+export function* deleteLog({ payload }) {
+  yield call(api.delete, `logs/${payload.id}`);
+
+  yield put(deleteLogSuccess());
   yield put(getLogsRequest());
 }
 
@@ -73,6 +69,7 @@ export function* searchLogs({ payload }) {
   yield put(setSearchLogSuccess(response.data));
 }
 
+// Gets log selected by user and set current attribute to update
 export function* currentLog({ payload }) {
   const logs = yield select(state => state.log.logs);
 

@@ -15,6 +15,9 @@ export default function TechItem({ tech, onDelete }) {
 }
 
 TechItem.propTypes = {
-  tech: PropTypes.shape().isRequired,
+  tech: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+  }).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

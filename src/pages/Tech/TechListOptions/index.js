@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getTechsRequest } from '../../../store/modules/tech/actions';
 
-export default function TechSelectOptions() {
-  const techs = useSelector(state => state.tech.techs);
-  const loading = useSelector(state => state.tech.loading);
-
+export default function TechListOptions() {
+  const { techs, loading } = useSelector(state => state.tech);
   const techSize = useMemo(() => techs.lenght, [techs]);
 
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import {
   ADD_TECH_SUCCESS,
   DELETE_TECH_REQUEST,
   DELETE_TECH_SUCCESS,
-} from '../types';
+} from './types';
 
 export function getTechsRequest() {
   return {

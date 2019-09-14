@@ -4,7 +4,7 @@ import M from 'materialize-css/dist/js/materialize.min';
 
 import { updateLogRequest } from '../../../store/modules/log/actions';
 
-import TechSelectOptions from '../../Tech/TechSelectOptions';
+import TechListOptions from '../../Tech/TechListOptions';
 
 const modalStyle = {
   width: '75%',
@@ -39,6 +39,7 @@ export default function EditLogModal() {
     } else {
       dispatch(updateLogRequest(message, attention, tech));
 
+      M.toast({ html: 'Ocorrência atualizada com sucesso' });
       handleClearInputs();
     }
   }
@@ -55,9 +56,6 @@ export default function EditLogModal() {
               value={message}
               onChange={e => setMessage(e.target.value)}
             />
-            <label htmlFor="message" className="active">
-              Descrição
-            </label>
           </div>
         </div>
 
@@ -72,7 +70,7 @@ export default function EditLogModal() {
               <option value="" disabled>
                 Selecione o técnico
               </option>
-              <TechSelectOptions />
+              <TechListOptions />
             </select>
           </div>
         </div>
@@ -97,7 +95,7 @@ export default function EditLogModal() {
         <a
           href="#!"
           onClick={handleSubmit}
-          className="modal-close waves-effect blue waves-light btn"
+          className="modal-close waves-effect green waves-light btn"
         >
           Salvar
         </a>

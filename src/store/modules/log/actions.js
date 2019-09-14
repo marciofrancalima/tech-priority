@@ -7,12 +7,11 @@ import {
   UPDATE_LOG_SUCCESS,
   SET_CURRENT_REQUEST,
   SET_CURRENT_SUCCESS,
-  CLEAR_CURRENT,
   SEARCH_LOGS_REQUEST,
   SEARCH_LOGS_SUCCESS,
   DELETE_LOG_REQUEST,
   DELETE_LOG_SUCCESS,
-} from '../types';
+} from './types';
 
 export function getLogsRequest() {
   return {
@@ -65,12 +64,6 @@ export function setCurrentSuccess(data) {
   return {
     type: SET_CURRENT_SUCCESS,
     payload: { data },
-  };
-}
-
-export function setClearCurrent() {
-  return {
-    type: CLEAR_CURRENT,
   };
 }
 

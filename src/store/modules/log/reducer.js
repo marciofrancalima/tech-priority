@@ -8,18 +8,16 @@ import {
   UPDATE_LOG_SUCCESS,
   SET_CURRENT_REQUEST,
   SET_CURRENT_SUCCESS,
-  CLEAR_CURRENT,
   SEARCH_LOGS_REQUEST,
   SEARCH_LOGS_SUCCESS,
   DELETE_LOG_REQUEST,
   DELETE_LOG_SUCCESS,
-} from '../types';
+} from './types';
 
 const INITIAL_STATE = {
   logs: [],
   current: null,
   loading: false,
-  error: null,
 };
 
 export default function log(state = INITIAL_STATE, action) {
@@ -48,6 +46,7 @@ export default function log(state = INITIAL_STATE, action) {
       }
       case UPDATE_LOG_SUCCESS: {
         draft.loading = false;
+        draft.current = false;
         break;
       }
       case SET_CURRENT_REQUEST: {
@@ -57,10 +56,6 @@ export default function log(state = INITIAL_STATE, action) {
       case SET_CURRENT_SUCCESS: {
         draft.loading = false;
         draft.current = action.payload.data;
-        break;
-      }
-      case CLEAR_CURRENT: {
-        draft.current = null;
         break;
       }
       case SEARCH_LOGS_REQUEST: {

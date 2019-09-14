@@ -6,7 +6,7 @@ import {
   GET_TECHS_REQUEST,
   ADD_TECH_REQUEST,
   DELETE_TECH_REQUEST,
-} from '../types';
+} from './types';
 
 import {
   getTechsRequest,

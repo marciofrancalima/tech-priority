@@ -12,7 +12,7 @@ export default function SearchBar() {
   }
 
   return (
-    <nav style={{ marginBottom: '30px' }} className="blue">
+    <nav style={{ marginBottom: '30px', backgroundColor: '#402845' }}>
       <div className="nav-wrapper">
         <form>
           <div className="input-field">

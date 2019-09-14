@@ -22,7 +22,6 @@ export default function AddTechModal() {
       dispatch(addTechRequest(firstName, lastName));
 
       M.toast({ html: `${firstName} ${lastName} adicionado com sucesso` });
-
       handleClearInputs();
     }
   }
@@ -64,7 +63,7 @@ export default function AddTechModal() {
         <a
           href="#!"
           onClick={handleSubmit}
-          className="modal-close waves-effect blue waves-light btn"
+          className="modal-close waves-effect green waves-light btn"
         >
           Salvar
         </a>

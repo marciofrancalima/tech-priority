@@ -4,7 +4,7 @@ import M from 'materialize-css/dist/js/materialize.min';
 
 import { addLogRequest } from '../../../store/modules/log/actions';
 
-import TechSelectOptions from '../../Tech/TechSelectOptions';
+import TechListOptions from '../../Tech/TechListOptions';
 
 const modalStyle = {
   width: '75%',
@@ -30,8 +30,7 @@ export default function AddLogModal() {
     } else {
       dispatch(addLogRequest(message, attention, tech));
 
-      M.toast({ html: `Ocorrência adicionada por ${tech}` });
-
+      M.toast({ html: `Ocorrência adicionada com sucesso` });
       handleClearInputs();
     }
   }
@@ -65,7 +64,7 @@ export default function AddLogModal() {
               <option value="" disabled>
                 Selecione o técnico
               </option>
-              <TechSelectOptions />
+              <TechListOptions />
             </select>
           </div>
         </div>
@@ -90,7 +89,7 @@ export default function AddLogModal() {
         <a
           href="#!"
           onClick={handleSubmit}
-          className="modal-close waves-effect blue waves-light btn"
+          className="modal-close waves-effect green waves-light btn"
         >
           Salvar
         </a>

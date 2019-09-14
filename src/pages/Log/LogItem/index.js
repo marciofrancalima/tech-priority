@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
-export default function LogItem({ log, onDelete, onUpdate }) {
+export default function LogItem({ log, onDelete, onSelectItem }) {
   const dateFormatted = useMemo(
     () =>
       format(parseISO(log.date), "dd 'de' MMMM 'às' HH:mm", { locale: ptBR }),
@@ -18,7 +18,7 @@ export default function LogItem({ log, onDelete, onUpdate }) {
           className={`modal-trigger ${
             log.attention ? 'red-text' : 'blue-text'
           }`}
-          onClick={onUpdate}
+          onClick={onSelectItem}
         >
           {log.message}
         </a>
@@ -26,8 +26,9 @@ export default function LogItem({ log, onDelete, onUpdate }) {
         <br />
 
         <span className="grey-text">
-          <span className="black-text">ID #{log.id}</span> last updated by{' '}
-          <span className="black-text">{log.tech}</span> on {dateFormatted}
+          <span className="black-text">Cod. #{log.id}</span> última atualização
+          feita por <span className="black-text">{log.tech}</span> em{' '}
+          {dateFormatted}
         </span>
 
         <a href="#!" className="secondary-content" onClick={onDelete}>
@@ -39,7 +40,13 @@ export default function LogItem({ log, onDelete, onUpdate }) {
 }
 
 LogItem.propTypes = {
-  log: PropTypes.shape().isRequired,
+  log: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    attention: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    tech: PropTypes.string.isRequired,
+  }).isRequired,
   onDelete: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  onSelectItem: PropTypes.func.isRequired,
 };
