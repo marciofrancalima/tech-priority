@@ -9,6 +9,8 @@ import {
   SET_CURRENT_REQUEST,
   SET_CURRENT_SUCCESS,
   CLEAR_CURRENT,
+  SEARCH_LOGS_REQUEST,
+  SEARCH_LOGS_SUCCESS,
   DELETE_LOG_REQUEST,
   DELETE_LOG_SUCCESS,
 } from '../types';
@@ -59,6 +61,15 @@ export default function log(state = INITIAL_STATE, action) {
       }
       case CLEAR_CURRENT: {
         draft.current = null;
+        break;
+      }
+      case SEARCH_LOGS_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+      case SEARCH_LOGS_SUCCESS: {
+        draft.loading = false;
+        draft.logs = action.payload.data;
         break;
       }
       case DELETE_LOG_REQUEST: {

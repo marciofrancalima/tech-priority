@@ -6,6 +6,7 @@ import {
   UPDATE_LOG_REQUEST,
   DELETE_LOG_REQUEST,
   SET_CURRENT_REQUEST,
+  SEARCH_LOGS_REQUEST,
 } from '../types';
 import {
   getLogsRequest,
@@ -14,6 +15,7 @@ import {
   updateLogSuccess,
   setCurrentSuccess,
   setClearCurrent,
+  setSearchLogSuccess,
   deleteLogSuccess,
 } from './actions';
 
@@ -65,6 +67,12 @@ export function* updateLog({ payload }) {
   yield put(getLogsRequest());
 }
 
+export function* searchLogs({ payload }) {
+  const response = yield call(api.get, `logs?q=${payload.text}`);
+
+  yield put(setSearchLogSuccess(response.data));
+}
+
 export function* currentLog({ payload }) {
   const logs = yield select(state => state.log.logs);
 
@@ -79,4 +87,5 @@ export default all([
   takeLatest(UPDATE_LOG_REQUEST, updateLog),
   takeLatest(DELETE_LOG_REQUEST, deleteLog),
   takeLatest(SET_CURRENT_REQUEST, currentLog),
+  takeLatest(SEARCH_LOGS_REQUEST, searchLogs),
 ]);

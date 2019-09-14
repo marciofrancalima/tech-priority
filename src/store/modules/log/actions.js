@@ -8,6 +8,8 @@ import {
   SET_CURRENT_REQUEST,
   SET_CURRENT_SUCCESS,
   CLEAR_CURRENT,
+  SEARCH_LOGS_REQUEST,
+  SEARCH_LOGS_SUCCESS,
   DELETE_LOG_REQUEST,
   DELETE_LOG_SUCCESS,
 } from '../types';
@@ -69,6 +71,20 @@ export function setCurrentSuccess(data) {
 export function setClearCurrent() {
   return {
     type: CLEAR_CURRENT,
+  };
+}
+
+export function setSearchLogRequest(text) {
+  return {
+    type: SEARCH_LOGS_REQUEST,
+    payload: { text },
+  };
+}
+
+export function setSearchLogSuccess(data) {
+  return {
+    type: SEARCH_LOGS_SUCCESS,
+    payload: { data },
   };
 }
 
