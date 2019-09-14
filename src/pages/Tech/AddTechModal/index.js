@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min';
+
+import { addTechRequest } from '../../../store/modules/tech/actions';
 
 export default function AddTechModal() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+
+  const dispatch = useDispatch();
 
   function handleClearInputs() {
     setFirstName('');
@@ -14,7 +19,9 @@ export default function AddTechModal() {
     if (firstName === '' || lastName === '') {
       M.toast({ html: 'Preencha os dados corretamente' });
     } else {
-      console.log(firstName, lastName);
+      dispatch(addTechRequest(firstName, lastName));
+
+      M.toast({ html: `${firstName} ${lastName} adicionado com sucesso` });
 
       handleClearInputs();
     }

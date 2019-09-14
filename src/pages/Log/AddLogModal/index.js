@@ -4,6 +4,8 @@ import M from 'materialize-css/dist/js/materialize.min';
 
 import { addLogRequest } from '../../../store/modules/log/actions';
 
+import TechSelectOptions from '../../Tech/TechSelectOptions';
+
 const modalStyle = {
   width: '75%',
   height: '75%',
@@ -63,9 +65,7 @@ export default function AddLogModal() {
               <option value="" disabled>
                 Selecione o técnico
               </option>
-              <option value="Márcio França">Márcio França</option>
-              <option value="John Doe">John Doe</option>
-              <option value="Wellington Wilson">Wellington Wilson</option>
+              <TechSelectOptions />
             </select>
           </div>
         </div>
