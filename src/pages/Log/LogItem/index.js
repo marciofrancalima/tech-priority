@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
-export default function LogItem({ log }) {
+export default function LogItem({ log, onDelete, onUpdate }) {
   const dateFormatted = useMemo(
     () =>
       format(parseISO(log.date), "dd 'de' MMMM 'às' HH:mm", { locale: ptBR }),
@@ -18,6 +18,7 @@ export default function LogItem({ log }) {
           className={`modal-trigger ${
             log.attention ? 'red-text' : 'blue-text'
           }`}
+          onClick={onUpdate}
         >
           {log.message}
         </a>
@@ -29,7 +30,7 @@ export default function LogItem({ log }) {
           <span className="black-text">{log.tech}</span> on {dateFormatted}
         </span>
 
-        <a href="#!" className="secondary-content">
+        <a href="#!" className="secondary-content" onClick={onDelete}>
           <i className="material-icons grey-text">delete</i>
         </a>
       </div>
@@ -39,4 +40,6 @@ export default function LogItem({ log }) {
 
 LogItem.propTypes = {
   log: PropTypes.shape().isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };

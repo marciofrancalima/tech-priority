@@ -1,10 +1,10 @@
 {
   "logs": [
     {
-      "message": "Mudou o cartão da rede no server 007",
+      "message": "Mudou o cartão da rede no server 006",
       "attention": false,
       "tech": "Márcio França",
-      "date": "2019-09-10T15:46:10.179Z",
+      "date": "2019-09-14T04:03:27.022Z",
       "id": 1
     },
     {
@@ -27,13 +27,6 @@
       "attention": false,
       "tech": "Wilson França",
       "date": "2019-05-31T19:57:35.544Z"
-    },
-    {
-      "message": "Estação 42 está com antivírus expirado",
-      "attention": true,
-      "tech": "Márcio França",
-      "date": "2019-09-13T22:43:27.034Z",
-      "id": 5
     }
   ],
   "techs": [

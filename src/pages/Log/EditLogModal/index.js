@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min';
+
+import { updateLogRequest } from '../../../store/modules/log/actions';
 
 const modalStyle = {
   width: '75%',
@@ -11,6 +14,17 @@ export default function EditLogModal() {
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
 
+  const current = useSelector(state => state.log.current);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    }
+  }, [current]);
+
   function handleClearInputs() {
     setMessage('');
     setTech('');
@@ -21,7 +35,7 @@ export default function EditLogModal() {
     if (message === '' || tech === '') {
       M.toast({ html: 'Preecha os dados corretamente' });
     } else {
-      console.log(message, tech, attention);
+      dispatch(updateLogRequest(message, attention, tech));
 
       handleClearInputs();
     }
