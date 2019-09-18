@@ -32,7 +32,7 @@ $ cd tech-priority
 $ yarn install (ou npm)
 
 # Execute a aplicação
-$ yarn start
+$ yarn dev
 ```
 
 ## Próximos passos
